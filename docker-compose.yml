@@ -1,0 +1,19 @@
+# This files contains everything needed to run this stack in development, staging, or production
+
+version: '3.4'
+
+services:
+  tick_bot:
+    image: paulrichter/tick_bot:1.0
+    networks:
+      - glory_wall
+    environment:
+      - SLACK_TOKEN=${SLACK_TOKEN}
+      - tick_env=production
+    stdin_open: true
+    tty: true
+    command: "/usr/sbin/crond -f -l 8 && tail -f /var/log/cron.log"
+
+networks:
+  glory_wall:
+    attachable: true

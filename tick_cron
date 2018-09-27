@@ -1,0 +1,1 @@
+0 * * * * python /tick_bot/tick.py >> /var/log/cron.log 2>&1
